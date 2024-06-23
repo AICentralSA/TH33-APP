@@ -3,54 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Central</title>
+    <title>TH33 APP - The Future of AI is Coming</title>
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #00ff9d;
+            --secondary-color: #ff00ff;
+            --background-color: #0a0a1f;
+            --text-color: #ffffff;
+        }
+
+        body, html {
             margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #495464, #282c34);
-            color: white;
-            font-family: Arial, sans-serif;
+            position: relative;
+            z-index: 1;
         }
+
         .logo {
-            animation: spin infinite 10s linear;
-            width: 250px; /* Adjust the logo size */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--primary-color),
+                         0 0 20px var(--primary-color),
+                         0 0 30px var(--primary-color);
+            animation: pulsate 2s infinite alternate;
         }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .content {
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             text-align: center;
         }
-        footer {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            display: flex;
-            align-items: center;
-            font-size: 12px;
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 600px;
         }
-        .footer-logo {
-            animation: spin infinite 10s linear;
-            width: 20px;
-            margin-right: 5px;
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-item {
+            margin: 0 1rem;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .email-form {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .email-input {
+            padding: 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--secondary-color);
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        @keyframes pulsate {
+            0% {
+                text-shadow: 0 0 10px var(--primary-color),
+                             0 0 20px var(--primary-color),
+                             0 0 30px var(--primary-color);
+            }
+            100% {
+                text-shadow: 0 0 20px var(--primary-color),
+                             0 0 30px var(--primary-color),
+                             0 0 40px var(--primary-color),
+                             0 0 50px var(--primary-color),
+                             0 0 60px var(--primary-color);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 4rem; }
+            h1 { font-size: 2rem; }
+            p { font-size: 1rem; }
+            .countdown-number { font-size: 2rem; }
+            .email-input { width: 200px; }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <img src="https://i.ibb.co/tKqry5j/ai-central-logo-big.png" alt="AI Central Logo" class="logo">
-        <p>Under Construction</p>
-        <p>Exciting developments are on the horizon. Stay tuned!</p>
+    <canvas id="canvas"></canvas>
+    <div class="container">
+        <div class="logo">TH33 APP</div>
+        <h1>The Future of AI is Coming</h1>
+        <p>Prepare for a revolutionary AI experience by AI Central. Your everything app is just around the corner.</p>
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        <form class="email-form">
+            <input type="email" class="email-input" placeholder="Enter your email" required>
+            <button type="submit" class="submit-btn">Get Notified</button>
+        </form>
+        <div class="social-icons">
+            <a href="#" class="social-icon">&#xf099;</a>
+            <a href="#" class="social-icon">&#xf09a;</a>
+            <a href="#" class="social-icon">&#xf16d;</a>
+        </div>
     </div>
-    <footer>
-        <img src="https://i.ibb.co/6YZtfyX/ai-central-small-logo.png" alt="AI Central Logo" class="footer-logo">
-        <span>&copy; 2024 AI Central</span>
-    </footer>
+
+    <script>
+        // Countdown timer
+        const countdownDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000; // 30 days from now
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdown);
+            }
+        }, 1000);
+
+        // Neural network animation
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, nodes = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = Math.random() * 2 - 1;
+                this.vy = Math.random() * 2 - 1;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#00ff9d';
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            resize();
+            nodes = [];
+            for (let i = 0; i < 100; i++) {
+                nodes.push(new Node());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < nodes.length; i++) {
+                nodes[i].update();
+                nodes[i].draw();
+                
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let dx = nodes[i].x - nodes[j].x;
+                    let dy = nodes[i].y - nodes[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(0, 255, 157, ${1 - distance / 150})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
 </body>
 </html>

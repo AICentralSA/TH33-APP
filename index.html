@@ -130,6 +130,14 @@
             color: var(--secondary-color);
         }
 
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
         #canvas {
             position: fixed;
             top: 0;
@@ -192,10 +200,13 @@
             <button type="submit" class="submit-btn">Get Notified</button>
         </form>
         <div class="social-icons">
-            <a href="#" class="social-icon">&#xf099;</a>
+            <a href="https://x.com/TH33APP" class="social-icon">&#xf099;</a>
             <a href="#" class="social-icon">&#xf09a;</a>
             <a href="#" class="social-icon">&#xf16d;</a>
         </div>
+    </div>
+    <div class="footer">
+        <a href="https://www.aicentral.co.za/" style="color: var(--text-color); text-decoration: none;">&copy; AI Central</a>
     </div>
 
     <script>
@@ -244,7 +255,7 @@
                 this.y += this.vy;
 
                 if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
+                if (.y < 0 || this.y > height) this.vy *= -1;
             }
 
             draw() {
